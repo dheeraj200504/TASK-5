@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #eef2f3, #e3f2fd);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .post {
+            background: #ffffff;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .post:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .post-title {
+            color: #2563eb;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .post-content {
+            color: #374151;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .post-date {
+            margin-top: 15px;
+            color: #6b7280;
+            font-size: 0.85rem;
+            text-align: right;
+        }
+
+        .no-posts {
+            text-align: center;
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 12px;
+            color: #6b7280;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📝 My Blog Posts</h1>
+
+    {% if all_posts %}
+        {% for post in all_posts %}
+        <div class="post">
+            <h2 class="post-title">{{ post.title }}</h2>
+            <p class="post-content">{{ post.content }}</p>
+            <p class="post-date">
+                Posted on {{ post.created_at|date:"F d, Y - H:i" }}
+            </p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-posts">
+            <p>No posts yet. Add some posts from the admin panel 🚀</p>
+        </div>
+    {% endif %}
+
+</body>
+</html>
